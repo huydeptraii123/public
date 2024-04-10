@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"Mix",
+				"Mix_LoadWAV"
+			],
+			[
+				"game",
+				"gameRunning"
+			],
+			[
+				"loa",
+				"loadTexture"
+			],
+			[
+				"exit",
+				"exitButtonTexture"
+			],
+			[
+				"sta",
+				"startButtonTexture"
+			],
+			[
+				"Mix_",
+				"Mix_Chunk"
+			],
+			[
+				"ob",
+				"obstacleTexturePath"
+			],
+			[
 				"TR",
 				"TRexstanding"
 			],
@@ -23,7 +51,7 @@
 			"file": "src/main.cpp",
 			"settings":
 			{
-				"buffer_size": 5313,
+				"buffer_size": 6184,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -32,7 +60,7 @@
 			"file": "src/entity.cpp",
 			"settings":
 			{
-				"buffer_size": 773,
+				"buffer_size": 775,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -50,7 +78,8 @@
 			"file": "include/RenderWindow.hpp",
 			"settings":
 			{
-				"buffer_size": 416,
+				"buffer_size": 475,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
@@ -58,7 +87,7 @@
 			"file": "include/Entity.hpp",
 			"settings":
 			{
-				"buffer_size": 623,
+				"buffer_size": 625,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -104,17 +133,16 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/ADMIN/Desktop/Super Chrome T-Rex 2D SDL",
-		"/C/Users/ADMIN/Desktop/Super Chrome T-Rex 2D SDL/include",
-		"/C/Users/ADMIN/Desktop/Super Chrome T-Rex 2D SDL/res",
-		"/C/Users/ADMIN/Desktop/Super Chrome T-Rex 2D SDL/src"
+		"/C/Users/ADMIN/Desktop/Super Chrome T-Rex 2D SDL"
 	],
 	"file_history":
 	[
+		"/C/Users/ADMIN/Desktop/Super Chrome T-Rex 2D SDL/src/Button.cpp",
+		"/C/Users/ADMIN/Desktop/Super Chrome T-Rex 2D SDL/include/Button.hpp",
+		"/C/Users/ADMIN/Desktop/Super Chrome T-Rex 2D SDL/Super Chrome T-Rex 2D SDL.sublime-project",
 		"/C/Users/ADMIN/Desktop/Super Chrome T-Rex 2D SDL/src/main.cpp",
 		"/C/Users/ADMIN/Desktop/Super Chrome T-Rex 2D SDL/include/RenderWindow.hpp",
 		"/C/Users/ADMIN/Desktop/Super Chrome T-Rex 2D SDL/src/renderwindow.cpp",
-		"/C/Users/ADMIN/Desktop/Super Chrome T-Rex 2D SDL/Super Chrome T-Rex 2D SDL.sublime-project",
 		"/C/Users/ADMIN/AppData/Roaming/Sublime Text 3/Packages/Default/exec.py"
 	],
 	"find":
@@ -150,7 +178,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -159,15 +187,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5313,
+						"buffer_size": 6184,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								372,
+								372
 							]
 						],
 						"settings":
@@ -175,10 +203,10 @@
 							"syntax": "Packages/C++/C++.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 216.0,
+						"translation.y": 1782.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -187,15 +215,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 773,
+						"buffer_size": 775,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								24,
+								24
 							]
 						],
 						"settings":
@@ -206,7 +234,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -222,8 +250,8 @@
 						"selection":
 						[
 							[
-								0,
-								0
+								793,
+								793
 							]
 						],
 						"settings":
@@ -232,7 +260,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 324.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -244,15 +272,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 416,
+						"buffer_size": 475,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								409,
+								409
 							]
 						],
 						"settings":
@@ -274,15 +302,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 623,
+						"buffer_size": 625,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								65,
+								65
 							]
 						],
 						"settings":
@@ -293,7 +321,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]

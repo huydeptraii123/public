@@ -13,6 +13,7 @@ public:
     void render(Entity& p_entity);
     void display();
     SDL_Window* getSDLWindow();
+    SDL_Renderer* getRenderer() const { return renderer; }
 
 private:
     SDL_Window* window;

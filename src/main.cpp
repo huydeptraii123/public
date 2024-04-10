@@ -1,9 +1,12 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
 #include <iostream>
 #include "RenderWindow.hpp"
 #include "Entity.hpp"
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -11,7 +14,15 @@ const float GRAVITY = 1.2f;
 const float JUMP_FORCE = 10.0f;
 const int FRAME_DELAY = 20;
 const float OBSTACLE_SPEED = 5.0f;
-const float paddle = -80.0f;
+const float paddle = -85.0f;
+Mix_Chunk* jumpSound = nullptr;
+Mix_Chunk* loseSound = nullptr;
+Mix_Chunk* losevoiceSound = nullptr;
+Mix_Chunk* runningSound = nullptr;
+
+
+
+
 
 int main(int argc, char* args[])
 {
@@ -26,22 +37,31 @@ int main(int argc, char* args[])
         SDL_Quit();
         return -1;
     }
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+    {
+        std::cout << "Mix_OpenAudio has failed. Error: " << SDL_GetError() << std::endl;
+        SDL_Quit();
+        return -1;
+    }
+    jumpSound = Mix_LoadWAV("res/gfx/jump_sound.wav");
+    loseSound = Mix_LoadWAV("res/gfx/lose_sound.wav");
+    losevoiceSound = Mix_LoadWAV("res/gfx/lose_voice_sound.wav");
+    runningSound = Mix_LoadWAV("res/gfx/Running_Sound.wav");
+
+    if (jumpSound == nullptr )
+    {
+        std::cout << "Failed to load jump sound. Error: " << SDL_GetError() << std::endl;
+        Mix_CloseAudio();
+        SDL_Quit();
+        return -1;
+    }
+
+    
 
     RenderWindow window("Super T-Rex v1.0", 640, 480); // Tạo cửa sổ game
 
     //Load ảnh liên quan cho game
 
-    SDL_Texture* StartButton = window.loadTexture("res/gfx/Start_Button.png");
-    Entity Start(100, 79, StartButton);
-
-    SDL_Texture* ExitButton = window.loadTexture("res/gfx/Exit_Button.png");
-    Entity Exit(100, 99, ExitButton);
-
-    SDL_Texture* GameTitle = window.loadTexture("res/gfx/Game_Title.png");
-    Entity Title(100, 49, GameTitle);
-
-    SDL_Texture* LobbySite = window.loadTexture("res/gfx/Menu_Background.png");
-    Entity Lobby(0,0, LobbySite);
 
     SDL_Texture* BackgroundTexture = window.loadTexture("res/gfx/T-Rex_Background.png");
     Entity entity0(0, 0, BackgroundTexture);
@@ -56,10 +76,14 @@ int main(int argc, char* args[])
     tRexEntity.setSize(tRexWidth, tRexHeight);
 
     vector<Obstacle> obstacles; // Tạo xương rồng
+    vector<string> obstacleTextures = {"cactus.png", "A.png", "B.png", "C.png", "D.png", "E.png"};
+
+    srand(time(0));
 
     for (int i = 0; i < 1000; ++i)
     {
-        SDL_Texture* obstacleTexture = window.loadTexture("res/gfx/cactus.png");
+    	string obstacleTexturePath = "res/gfx/" + obstacleTextures[rand() % obstacleTextures.size()];
+        SDL_Texture* obstacleTexture = window.loadTexture(obstacleTexturePath.c_str());
         int obstacleHeight, obstacleWidth;
         SDL_QueryTexture(obstacleTexture, NULL, NULL, &obstacleWidth, &obstacleHeight);
 
@@ -75,12 +99,15 @@ int main(int argc, char* args[])
     SDL_Event event;
 
     bool gameRunning = true;
-
+     
+     Mix_PlayChannel(-1, runningSound, 0);
     Uint32 gameStartTime = SDL_GetTicks(); // tính thời gian game chạy rồi quy đổi ra số điểm của người chơi
     Uint32 gameTime = 0;
 
     while (gameRunning)
     {
+
+
         Uint32 startTime = SDL_GetTicks(); // set thời gian để control khung hình game phù hợp
 
         while (SDL_PollEvent(&event))
@@ -95,8 +122,14 @@ int main(int argc, char* args[])
                 {
                     isJumping = true;
                     jumpSpeed = -JUMP_FORCE;
+                    
+
+                    Mix_PlayChannel(-1, jumpSound, 0); 
                 }
             }
+            
+            
+
         }
 
         if (isJumping)
@@ -114,10 +147,7 @@ int main(int argc, char* args[])
 
         window.clear();
 
-        window.render(Lobby);
-        window.render(Start);
-        window.render(Exit);
-        window.render(Title);
+        
         window.render(entity0);
 
         for (auto& obstacle : obstacles) 
@@ -142,11 +172,15 @@ int main(int argc, char* args[])
             }
         }
 
+        
+
         if (!gameRunning)
         {
             gameTime = SDL_GetTicks() - gameStartTime;
+            Mix_FreeChunk(runningSound);
+            Mix_PlayChannel(-1, loseSound, 0);
 
-            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Game Over", ("Your score: " + to_string(gameTime/72) ).c_str(), window.getSDLWindow());
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Game Over", ("You Lose!!! Try hard next time!!! Your score: " + to_string(gameTime/72) ).c_str(), window.getSDLWindow());
         }
 
         Uint32 endTime = SDL_GetTicks();
@@ -160,6 +194,9 @@ int main(int argc, char* args[])
     }
 
     window.cleanUp();
+    Mix_FreeChunk(jumpSound);
+    Mix_FreeChunk(loseSound);
+    Mix_CloseAudio();
     SDL_Quit();
     return 0;
 }
