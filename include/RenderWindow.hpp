@@ -14,8 +14,10 @@ public:
     void display();
     SDL_Window* getSDLWindow();
     SDL_Renderer* getRenderer() const { return renderer; }
-
+    SDL_Texture* LoadaniTexture(const char *path);
+    void draw(SDL_Texture* tex, SDL_Rect * srcR, SDL_Rect * destR);
+    SDL_Renderer* renderer;
 private:
     SDL_Window* window;
-    SDL_Renderer* renderer;
+    
 };

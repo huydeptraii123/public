@@ -63,3 +63,14 @@ SDL_Window* RenderWindow::getSDLWindow()
 {
     return window;
 }
+SDL_Texture* RenderWindow::LoadaniTexture(const char *path)
+{
+	SDL_Surface * tmpSur;
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(RenderWindow::renderer,tmpSur);
+	SDL_FreeSurface(tmpSur);
+	return texture;
+}
+void RenderWindow::draw(SDL_Texture* tex, SDL_Rect src, SDL_Rect dest)
+{
+	SDL_RenderCopyEx(RenderWindow::renderer, tex, &src, &dest, NULL, NULL);
+}

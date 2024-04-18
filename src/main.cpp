@@ -66,7 +66,7 @@ int main(int argc, char* args[])
     SDL_Texture* BackgroundTexture = window.loadTexture("res/gfx/T-Rex_Background.png");
     Entity entity0(0, 0, BackgroundTexture);
 
-    SDL_Texture* TRexTexture = window.loadTexture("res/gfx/TRex_Standing-removebg.png");
+    SDL_Texture* TRexTexture = window.loadTexture("res/gfx/RunningT-Rex.png");
     int tRexWidth, tRexHeight;
     //Load ảnh con khủng long cùng với kích thước của nó
     SDL_QueryTexture(TRexTexture, NULL, NULL, &tRexWidth, &tRexHeight);
